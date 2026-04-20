@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система бронирования авиабилетов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header>
+    <h1>Система бронирования авиабилетов</h1>
+    <nav>
+        <button id="single-btn" class="active">Одиночное бронирование</button>
+        <button id="bulk-btn">Массовое бронирование</button>
+    </nav>
+</header>
+
+<header>
+    <h1>Система бронирования авиабилетов</h1>
+    <nav>
+        <button id="auth-btn">Авторизация</button>
+        <button id="single-btn" class="active">Одиночное бронирование</button>
+        <button id="bulk-btn">Массовое бронирование</button>
+        <span id="auth-status" class="auth-status">Не авторизован</span>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Форма авторизации -->
+    <div id="auth-form" class="form-container">
+        <h2>Авторизация</h2>
+
+        <form id="register-form">
+            <h3>Регистрация</h3>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <form id="login-form">
+            <h3>Вход</h3>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+
+        <button id="logout-btn" style="display:none;">Выйти</button>
+    </div>
+
+
+
+<main>
+
+    <!-- Одиночное бронирование -->
+    <div id="single-form" class="form-container active">
+        <h2>Одиночное бронирование</h2>
+
+        <form id="single-booking-form">
+            <input type="text" name="flight_number" placeholder="Номер рейса" required>
+            <input type="text" name="passenger" placeholder="ФИО пассажира" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+
+            <label>
+                <input type="checkbox" name="has_luggage"> Багаж
+            </label>
+
+            <button type="submit">Забронировать</button>
+        </form>
+    </div>
+
+    <!-- Массовое бронирование -->
+    <div id="bulk-form" class="form-container">
+        <h2>Массовое бронирование</h2>
+
+        <form id="bulk-booking-form">
+            <input type="text" name="flight_number" placeholder="Номер рейса" required>
+
+            <!-- Контейнер для пассажиров -->
+            <div id="passengers-container"></div>
+
+            <button type="button" id="add-passenger">+ Добавить пассажира</button>
+
+            <input type="text" name="promo_code" placeholder="Промокод (не обязательно)">
+            <textarea name="notes" placeholder="Примечания (не обязательно)"></textarea>
+
+            <button type="submit">Массовая бронь</button>
+        </form>
+    </div>
+
+    <!-- Результаты -->
+    <div id="results" class="results-container">
+        <h2>Результаты бронирования</h2>
+        <div id="response-display"></div>
+    </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[run]
+source = api_tester/backend/app
+branch = True
+omit =
+    */tests/*
+    */__init__.py
+
+[report]
+show_missing = True
+skip_covered = True
+
+[html]
+directory = coverage_html
