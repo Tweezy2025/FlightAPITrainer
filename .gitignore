@@ -1,10 +1,48 @@
-.venv/
+# --- Python ---
 __pycache__/
 *.pyc
-.pytest_cache/
-.mypy_cache/
-logs/
-reports/
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Byte-compiled
+*.py[cod]
+
+# --- FastAPI / Backend ---
+*.log
+
+# --- Frontend ---
+node_modules/
+dist/
+*.env
+
+# --- IDE ---
+.idea/
+.vscode/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Test artifacts ---
+pytest_cache/
+.coverage
+coverage.xml
+
+# Allure results
 allure-results/
-report.html
-api_tester/backlog/
+allure-report/
+
+# --- Docker ---
+*.pid
+*.seed
+*.bak
+
+# --- Project-specific ---
+backlog/
+tmp/

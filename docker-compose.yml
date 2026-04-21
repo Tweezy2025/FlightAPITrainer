@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: api_tester/backend/Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DBNAME: api_tester
+
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+
+  tests:
+    build:
+      context: .
+      dockerfile: tests/Dockerfile
+    container_name: tests
+    depends_on:
+      - backend
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DBNAME: api_tester
+    volumes:
+      - allure-results:/results
+
+  allure:
+    image: frankescobar/allure-docker-service
+    container_name: allure
+    ports:
+      - "5050:5050"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 1
+      KEEP_HISTORY: 1
+    volumes:
+      - allure-results:/app/allure-results
+      - allure-reports:/app/allure-reports
+
+  allure-ui:
+    image: frankescobar/allure-docker-service-ui
+    container_name: allure-ui
+    ports:
+      - "5252:5252"
+    environment:
+      # ВАЖНО: UI работает в браузере, поэтому должен обращаться к API через localhost
+      ALLURE_DOCKER_API_URL: http://localhost:5050/allure-docker-service
+    depends_on:
+      - allure
+
+volumes:
+  allure-results:
+  allure-reports:

@@ -19,7 +19,8 @@ class BookingService:
 
         # 2. Проверяем наличие мест
         if flight["seats_available"] <= 0:
-            raise ValueError("No seats available")
+            raise ValueError("Недостаточно мест")
+
 
         # 3. Считаем цену
         base_price = flight["price"]
@@ -66,7 +67,7 @@ class BookingService:
 
         # 2. Проверяем наличие мест
         if flight["seats_available"] < passenger_count:
-            raise ValueError("Not enough seats available")
+            raise ValueError("Недостаточно мест")
 
         base_price = flight["price"]
 
