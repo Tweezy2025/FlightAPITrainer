@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# Импорт роутеров
+# Импорт роутеров (абсолютные импорты внутри пакета)
 from api_tester.backend.app.api.flights import router as flights_router
 from api_tester.backend.app.api.bookings import router as bookings_router
 from api_tester.backend.app.api.airlines import router as airlines_router
 from api_tester.backend.app.api.light import router as light_router
 from api_tester.backend.app.api.auth import router as auth_router
+from api_tester.backend.app.api.payments import router as payments_router
 
 # Конфиг
 from api_tester.backend.app.config import DEBUG_MODE
@@ -33,6 +34,7 @@ def create_app() -> FastAPI:
     app.include_router(flights_router, prefix="/api/flights", tags=["Flights"])
     app.include_router(bookings_router, prefix="/api/bookings", tags=["Bookings"])
     app.include_router(airlines_router, prefix="/api/airlines", tags=["Airlines"])
+    app.include_router(payments_router, prefix="/api/payments", tags=["Payments"])
     app.include_router(light_router, tags=["Light"])
 
     return app
